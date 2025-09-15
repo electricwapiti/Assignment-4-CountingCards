@@ -18,19 +18,46 @@ public class Shuffle {
     return arr;
   }
 
-  //TODO: Finish method
-  public int[] naiveShuffle(int[] arr) {
+  public static int[] naiveShuffler(int[] arr) {
     int n = arr.length;
-    int[] result = new int[n];
-    Random rand = new Random(23452);
-    for (int k = 0; k < n; k++) {
+    int[] copy = new int[n];
+    int[] temp = arr.clone();
+    Random rand = new Random();
+    for(int k = 0; k < n; k++) {
       int i = rand.nextInt(n - k);
-      result[k] = arr[i];
-      // Remove element at index i by shifting left
-      for (int j = i; j < n - k - 1; j++) {
-        arr[j] = arr[j + 1];
+      copy[k] = temp[i];
+      for(int j = 1; j < n - k - 1; j++){
+        temp[j] = temp[j+1];
       }
     }
-    return result;
+    return copy;
+  }
+
+  public static int[] secondShuffler(int[] arr) {
+    Random rand = new Random();
+    int m = arr.length;
+    while (m > 0){
+      int i = rand.nextInt(m);
+      m--;
+      int t = arr[m];
+      arr[m] = arr[i];
+      arr[i] = t;
+    }
+
+    return arr;
+  }
+
+  public static int[] fisherYatesShuffler(int[] arr) {
+    int[] array = arr.clone();
+    int m = array.length, t, i;
+    Random rand = new Random();
+    while (m > 0) {
+      i = rand.nextInt(m);
+      m--;
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    return array;
   }
 }

@@ -12,4 +12,6 @@ class GreetingGeneratorTest {
     Shuffle generator = new Shuffle();
     assertEquals(generator.sayHello(), "Hello World!");
   }
+
+  
 }
